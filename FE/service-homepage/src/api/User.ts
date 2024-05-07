@@ -31,8 +31,16 @@ export async function getCheckLogin() {
     return clientAxios.get('/api/user/me');
 }
 
-export async function postVerifyProof(proof: string) {
+export async function postVerifyProof(
+    proof: string,
+    holderPubKey: string,
+    issuerPubKey: string,
+    publicSignals: string
+) {
     return clientAxios.post('/api/user/verify-proof', {
         proof,
+        holderPubKey,
+        issuerPubKey,
+        publicSignals,
     });
 }

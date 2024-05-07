@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { FaHeart } from 'react-icons/fa';
 import useUserInfoStore from '@/stores/useUserInfoStore';
 import { useRouter } from 'next/navigation';
-import { postLogout } from '@/api/User';
+import { postLogout, postVerifyProof } from '@/api/User';
 import { useToast } from '@/stores/useToastStore';
 
 export default function MyPagePage() {
@@ -13,7 +13,10 @@ export default function MyPagePage() {
     const { isInstalled, setInstalled } = useWalletStore();
     const toastStore = useToast();
     const { userInfo, logout } = useUserInfoStore((state) => state);
-    const [proof, setProof] = useState<string>('');
+    const [proof, setProof] = useState<Object>({});
+    const [holderPubKey, setHolderPubKey] = useState<string>('');
+    const [issuerPubKey, setIssuerPubKey] = useState<string>('');
+    const [publicSignals, setPublicSignals] = useState<Object>({});
 
     useEffect(() => {
         setTimeout(() => {
@@ -49,9 +52,12 @@ export default function MyPagePage() {
             if (event.origin !== window.location.origin) return;
 
             if (event.data.type === 'FROM_EXTENSION_TO_PAGE') {
-                console.log(JSON.parse(event.data.message));
-                alert(`Message from extension: ${event.data.message}`);
-                setProof(event.data.message);
+                console.log('Message from the extension:', event.data.message);
+                const data = JSON.parse(event.data.message);
+                setProof(data.proof);
+                setHolderPubKey(data.holderPubKey);
+                setIssuerPubKey(data.issuerPubKey);
+                setPublicSignals(data.publicSignals);
             }
         });
     }, []);
@@ -72,8 +78,24 @@ export default function MyPagePage() {
         });
     };
 
+    const onVerifyProof = async () => {
+        const res = await postVerifyProof(
+            JSON.stringify(proof),
+            holderPubKey,
+            issuerPubKey,
+            JSON.stringify(publicSignals)
+        );
+        if (res.data.result <= 300) {
+            console.log(res.data.data);
+            toastStore.openToast('2차 인증 완료!', 'success', () => {});
+        } else {
+            console.log(res.data.data);
+            toastStore.openToast(res.data.data.message, 'error', () => {});
+        }
+    };
+
     return (
-        <main className="flex flex-col items-center justify-center p-24">
+        <main className="flex flex-col items-center justify-center p-24 h-full">
             <h1 className="text-40 mt-24">마이페이지</h1>
             <section className="flex flex-col gap-y-12 mt-80 w-full">
                 <ProfileInfo
@@ -87,7 +109,10 @@ export default function MyPagePage() {
                         userInfo?.isVerifiedUser ? '2차 인증 완료' : '미인증'
                     }
                 />
-                <div>proof: {proof}</div>
+                <div>proof: {JSON.stringify(proof)}</div>
+                <div>holderPubKey: {holderPubKey}</div>
+                <div>issuerPubKey: {issuerPubKey}</div>
+                <div>publicSignals: {JSON.stringify(publicSignals)}</div>
                 {/*    {isInstalled ? (*/}
                 {/*    <button*/}
                 {/*        className={*/}
@@ -108,7 +133,7 @@ export default function MyPagePage() {
             </section>
             <section
                 id={'2nd-auth-banner'}
-                className="flex flex-col gap-y-12 mt-80 w-full text-indigo-500 border-2 border-indigo-500 rounded-8 p-12"
+                className="hidden flex flex-col gap-y-12 mt-80 w-full text-indigo-500 border-2 border-indigo-500 rounded-8 p-12"
             >
                 <h2 className="text-24">2차 인증</h2>
                 <div className="flex w-full gap-x-8">
@@ -139,6 +164,12 @@ export default function MyPagePage() {
                     onClick={onLogout}
                 >
                     로그아웃
+                </button>
+                <button
+                    className={'p-2 bg-gray-200 rounded-2xl'}
+                    onClick={onVerifyProof}
+                >
+                    2차 인증하기
                 </button>
             </div>
         </main>
