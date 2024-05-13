@@ -18,12 +18,20 @@ export class VerifierAPIController {
     summary: '생성된 Proof를 검증',
   })
   async verifyProof(@Body() dto: ProofDto): Promise<boolean> {
-    const { ServiceName, HolderPubKey, proof, IssuerPubKey, vKey } = dto;
+    const { ServiceName, HolderPubKey, proof } = dto;
+
+    // const document = get_document(did: string): Document
+    // const { encodedPubKey } = document.public_key;
+    // const decodedPubkey = decode(encodedPubKey);
+    // const publicSignals = convertToBinArray(decodedPubkey);
+    // const verifyResult = await this.verifierAPIService.verifyProof(
+    //   publicSignals,
+    //   JSON.parse(proof),
+    // );
 
     const verifyResult = await this.verifierAPIService.verifyProof(
-      proof,
-      IssuerPubKey,
-      vKey,
+      JSON.parse(''),
+      JSON.parse(proof),
     );
 
     if (!verifyResult) return false;

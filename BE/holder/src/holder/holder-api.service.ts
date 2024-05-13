@@ -22,7 +22,6 @@ export class HolderAPIService {
   ) {}
 
   CREATE_USER_VC = this.configService.get<string>('API_CREATE_USER_VC');
-  GET_PROOF_VALUE = this.configService.get<string>('API_GET_PROOF_VALUE');
 
   /*
     @ Use: Holder Controller - createUserVC()
@@ -31,25 +30,12 @@ export class HolderAPIService {
   */
   async createUserVC(
     dto: UserVCDto,
-  ): Promise<{ issuerPubKey: string; vc: string }> {
+  ): Promise<{ issuerPubKey: string; vc: string; message: string }> {
     return lastValueFrom(
       this.httpService
         .post(this.CREATE_USER_VC, {
-          params: { ...dto },
+          ...dto,
         })
-        .pipe(map((response) => response?.data)),
-    );
-  }
-
-  /*
-    @ Use: Holder Controller - createUserVC()
-    @ Intend: VC에 담을 proof value를 Issuer에게 생성 요청
-    * API Call: Issuer - generateProofValue()
-  */
-  async getProofValue(): Promise<{ proofValue: string; message: string }> {
-    return lastValueFrom(
-      this.httpService
-        .post(this.GET_PROOF_VALUE)
         .pipe(map((response) => response?.data)),
     );
   }
@@ -86,13 +72,12 @@ export class HolderAPIService {
     @ Use: Holder Controller - createUserVC()
     @ Intend: 사용자 계정 생성시 DID 등록
   */
-  async loadDID() {
+  async loadDID(holderPubKey: string) {
     const contract = await connectToNEARContract();
-
     await (contract as NEARContract).reg_did_using_account({
-      is_issuer: true,
+      is_issuer: false,
+      holder_pubkey: holderPubKey,
     });
-
     return true;
   }
 }

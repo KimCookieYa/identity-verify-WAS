@@ -14,28 +14,32 @@ export class HolderAPIController {
     private readonly customLoggerService: CustomLoggerService,
   ) {}
 
+  @Post('/reg-did')
+  @ApiOperation({
+    summary: 'Holder DID 생성 및 적재',
+  })
+  async registerDID(@Body() dto: UserVCDto) {
+    try {
+      // DID를 Near 네트워크에 적재
+      const result = await this.holderAPIService.loadDID(dto.holderPubKey);
+      return { statusCode: 200, data: { result } };
+    } catch (error) {
+      this.customLoggerService.error('/reg-did', 'Holder DID 생성 실패', {});
+      throw new CustomErrorException('Register DID Failed', 500);
+    }
+  }
+
   @Post('/create-vc')
   @ApiOperation({
     summary: '사용자 VC 생성',
   })
   async createUserVC(@Body() dto: UserVCDto) {
     try {
-      const { issuerPubKey, vc } = await this.holderAPIService.createUserVC(
-        dto,
-      );
-      const { proofValue, message } =
-        await this.holderAPIService.getProofValue();
-      const rawVC = JSON.parse(vc);
-
-      const newProof = { ...rawVC.proof, proofValue };
-      const newVC = { ...rawVC, proof: newProof };
-
-      // DID를 Near 네트워크에 적재
-      // await this.holderAPIService.loadDID();
-
+      const { issuerPubKey, vc, message } =
+        await this.holderAPIService.createUserVC(dto);
       return {
         statusCode: 200,
-        data: { issuerPubKey, vc: JSON.stringify(newVC), message },
+        data: { issuerPubKey, vc, message },
       };
     } catch (error) {
       this.customLoggerService.error('/create-vc', '사용자 VC 생성 실패', dto);

@@ -30,11 +30,15 @@ export class IssuerAPIService {
     @ Use: Issuer Controller - createUserVC()
     @ Intend: did 규격에 맞게 VC object 생성
   */
-  createUserVC(dto: UserVCDto) {
+  async createUserVC(dto: UserVCDto) {
     const { holderPubKey } = dto;
     const uuid = uuidv4();
-    const vc = createVC(uuid, holderPubKey);
-    return { uuid, vc };
+
+    // proof value가 삽입된 VC 생성
+    const { proofValue, message } = await this.generateProofValue();
+
+    const vc = createVC(uuid, holderPubKey, proofValue);
+    return { uuid, vc, message };
   }
 
   /*
@@ -62,7 +66,7 @@ export class IssuerAPIService {
   }
 
   /*
-    @ Use: Issuer Controller - generateProofValue()
+    @ Use: createUserVC()
     @ Intend: VC에 sign하기 위해 Issuer Pri Key로 sign한 값을 반환
     * Info: Key는 일단 env 파일로 관리
   */
@@ -88,7 +92,7 @@ export class IssuerAPIService {
     @ Intend: Issuer Pub Key를 반환
   */
   getIssuerPubKey() {
-    return 'honorable-muscle.testnet';
+    return 'wakeful-cave.testnet';
   }
 
   /*
@@ -130,15 +134,11 @@ export class IssuerAPIService {
     @ Use: Issuer Controller - checkIsLoadedDID()
     @ Intend: 등록된 DID가 맞는지 확인
   */
-  async checkIsLoadedDID(hpubkey: string) {
+  async checkIsLoadedDID(): Promise<string[]> {
     const contract = await connectToNEARContract();
-
-    // 제대로 적재 되었는지 확인
-    const response = await (contract as NEARContract).get_total_did({
-      holder_pub_key: hpubkey,
-    });
-
-    console.log(`[+] hpubkey: '${hpubkey}': ${response}`);
+    const response: string[] = await (contract as NEARContract).get_total_did(
+      {},
+    );
     return response;
   }
 }
