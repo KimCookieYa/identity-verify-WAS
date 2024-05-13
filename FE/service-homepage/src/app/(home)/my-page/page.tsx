@@ -56,8 +56,6 @@ export default function MyPagePage() {
                 const data = JSON.parse(event.data.message);
                 setProof(data.proof);
                 setHolderPubKey(data.holderPubKey);
-                setIssuerPubKey(data.issuerPubKey);
-                setPublicSignals(data.publicSignals);
             }
         });
     }, []);
@@ -80,17 +78,16 @@ export default function MyPagePage() {
 
     const onVerifyProof = async () => {
         const res = await postVerifyProof(
+            process.env.NEXT_PUBLIC_SERVICE_NAME as string,
             JSON.stringify(proof),
-            holderPubKey,
-            issuerPubKey,
-            JSON.stringify(publicSignals)
+            holderPubKey
         );
         if (res.data.result <= 300) {
             console.log(res.data.data);
             toastStore.openToast('2차 인증 완료!', 'success', () => {});
         } else {
-            console.log(res.data.data);
-            toastStore.openToast(res.data.data.message, 'error', () => {});
+            console.log(res.data);
+            toastStore.openToast(res.data?.message, 'error', () => {});
         }
     };
 
@@ -111,8 +108,6 @@ export default function MyPagePage() {
                 />
                 <div>proof: {JSON.stringify(proof)}</div>
                 <div>holderPubKey: {holderPubKey}</div>
-                <div>issuerPubKey: {issuerPubKey}</div>
-                <div>publicSignals: {JSON.stringify(publicSignals)}</div>
                 {/*    {isInstalled ? (*/}
                 {/*    <button*/}
                 {/*        className={*/}

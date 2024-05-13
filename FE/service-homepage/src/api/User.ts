@@ -32,15 +32,13 @@ export async function getCheckLogin() {
 }
 
 export async function postVerifyProof(
+    serviceName: string,
     proof: string,
-    holderPubKey: string,
-    issuerPubKey: string,
-    publicSignals: string
+    holderPubKey: string
 ) {
     return clientAxios.post('/api/user/verify-proof', {
+        serviceName,
         proof,
         holderPubKey,
-        issuerPubKey,
-        publicSignals,
     });
 }
