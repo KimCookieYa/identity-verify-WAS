@@ -1,0 +1,138 @@
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 5:31:20 AM [33m[RoutesResolver][39m [32mVerifierAPIController {/api/verifier}:[39m
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 5:31:20 AM [33m[RouterExplorer][39m [32mMapped {/api/verifier/verify-proof, POST} route[39m
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 5:31:20 AM [33m[NestApplication][39m [32mNest application successfully started[39m
+[31m[VERIFIER][39m [33mError[39m	5/15/2024, 5:34:25 AM [33m[ExceptionsHandler][39m [31mUnexpected end of JSON input[39m - {
+  stack: [
+    [32m'SyntaxError: Unexpected end of JSON input\n'[39m +
+      [32m'    at JSON.parse (<anonymous>)\n'[39m +
+      [32m'    at VerifierAPIController.verifyProof (/usr/src/app/src/verifier/verifier-api.controller.ts:33:12)\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-execution-context.js:38:29\n'[39m +
+      [32m'    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-execution-context.js:46:28\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-proxy.js:9:17'[39m
+  ]
+}
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 5:34:25 AM [33m[HTTP][39m [32m
+	 ✦ POST /api/verifier/verify-proof 🔴 500 ::ffff:172.19.0.6 
+	 ✦ body: {"ServiceName":"kataomoi-boat","IssuerPubKey":"","proof":"{}"} 
+	 ✦ params: {"0":"api/verifier/verify-proof"} 
+	 ✦ query: {}
+[39m
+[31m[VERIFIER][39m [33mError[39m	5/15/2024, 5:34:37 AM [33m[ExceptionsHandler][39m [31mUnexpected end of JSON input[39m - {
+  stack: [
+    [32m'SyntaxError: Unexpected end of JSON input\n'[39m +
+      [32m'    at JSON.parse (<anonymous>)\n'[39m +
+      [32m'    at VerifierAPIController.verifyProof (/usr/src/app/src/verifier/verifier-api.controller.ts:33:12)\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-execution-context.js:38:29\n'[39m +
+      [32m'    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-execution-context.js:46:28\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-proxy.js:9:17'[39m
+  ]
+}
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 5:34:37 AM [33m[HTTP][39m [32m
+	 ✦ POST /api/verifier/verify-proof 🔴 500 ::ffff:172.19.0.6 
+	 ✦ body: {"ServiceName":"kataomoi-boat","IssuerPubKey":"kimcookieya49.testnet","proof":"{\"pi_a\":[\"5859911651080975615106620726260130801495832330064459919876555430591214984634\",\"224605338350346836007526908193298290807806581977597446958440756908907573012\",\"1\"],\"pi_b\":[[\"20116528092932806657244124006123892656419396712850779808139764753006494176162\",\"3389496591053970951647165244520905209317971754556266478811186580081091751032\"],[\"10262832413177611682063109032598787333167040434527913887918114884226743777918\",\"21163980807723071986916345754701204602740485358112907228347165454162519715861\"],[\"1\",\"0\"]],\"pi_c\":[\"2010002668133569176770773869514593879856716659008056992160833661383265424685\",\"18678097828323945798147443175549151145087770387998114940520747523206033408154\",\"1\"],\"protocol\":\"groth16\",\"curve\":\"bn128\"}"} 
+	 ✦ params: {"0":"api/verifier/verify-proof"} 
+	 ✦ query: {}
+[39m
+[31m[VERIFIER][39m [33mError[39m	5/15/2024, 5:35:58 AM [33m[ExceptionsHandler][39m [31mUnexpected end of JSON input[39m - {
+  stack: [
+    [32m'SyntaxError: Unexpected end of JSON input\n'[39m +
+      [32m'    at JSON.parse (<anonymous>)\n'[39m +
+      [32m'    at VerifierAPIController.verifyProof (/usr/src/app/src/verifier/verifier-api.controller.ts:33:12)\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-execution-context.js:38:29\n'[39m +
+      [32m'    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-execution-context.js:46:28\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-proxy.js:9:17'[39m
+  ]
+}
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 5:35:58 AM [33m[HTTP][39m [32m
+	 ✦ POST /api/verifier/verify-proof 🔴 500 ::ffff:172.19.0.6 
+	 ✦ body: {"ServiceName":"kataomoi-boat","IssuerPubKey":"kimcookieya49.testnet","proof":"{\"pi_a\":[\"5859911651080975615106620726260130801495832330064459919876555430591214984634\",\"224605338350346836007526908193298290807806581977597446958440756908907573012\",\"1\"],\"pi_b\":[[\"20116528092932806657244124006123892656419396712850779808139764753006494176162\",\"3389496591053970951647165244520905209317971754556266478811186580081091751032\"],[\"10262832413177611682063109032598787333167040434527913887918114884226743777918\",\"21163980807723071986916345754701204602740485358112907228347165454162519715861\"],[\"1\",\"0\"]],\"pi_c\":[\"2010002668133569176770773869514593879856716659008056992160833661383265424685\",\"18678097828323945798147443175549151145087770387998114940520747523206033408154\",\"1\"],\"protocol\":\"groth16\",\"curve\":\"bn128\"}"} 
+	 ✦ params: {"0":"api/verifier/verify-proof"} 
+	 ✦ query: {}
+[39m
+[31m[VERIFIER][39m [33mError[39m	5/15/2024, 5:36:36 AM [33m[ExceptionsHandler][39m [31mUnexpected end of JSON input[39m - {
+  stack: [
+    [32m'SyntaxError: Unexpected end of JSON input\n'[39m +
+      [32m'    at JSON.parse (<anonymous>)\n'[39m +
+      [32m'    at VerifierAPIController.verifyProof (/usr/src/app/src/verifier/verifier-api.controller.ts:33:12)\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-execution-context.js:38:29\n'[39m +
+      [32m'    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-execution-context.js:46:28\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-proxy.js:9:17'[39m
+  ]
+}
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 5:36:36 AM [33m[HTTP][39m [32m
+	 ✦ POST /api/verifier/verify-proof 🔴 500 ::ffff:172.19.0.6 
+	 ✦ body: {"ServiceName":"kataomoi-boat","IssuerPubKey":"wakeful-cave.testnet","proof":"{\"pi_a\":[\"5859911651080975615106620726260130801495832330064459919876555430591214984634\",\"224605338350346836007526908193298290807806581977597446958440756908907573012\",\"1\"],\"pi_b\":[[\"20116528092932806657244124006123892656419396712850779808139764753006494176162\",\"3389496591053970951647165244520905209317971754556266478811186580081091751032\"],[\"10262832413177611682063109032598787333167040434527913887918114884226743777918\",\"21163980807723071986916345754701204602740485358112907228347165454162519715861\"],[\"1\",\"0\"]],\"pi_c\":[\"2010002668133569176770773869514593879856716659008056992160833661383265424685\",\"18678097828323945798147443175549151145087770387998114940520747523206033408154\",\"1\"],\"protocol\":\"groth16\",\"curve\":\"bn128\"}"} 
+	 ✦ params: {"0":"api/verifier/verify-proof"} 
+	 ✦ query: {}
+[39m
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 5:41:52 AM [33m[RoutesResolver][39m [32mVerifierAPIController {/api/verifier}:[39m
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 5:41:52 AM [33m[RouterExplorer][39m [32mMapped {/api/verifier/verify-proof, POST} route[39m
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 5:41:52 AM [33m[NestApplication][39m [32mNest application successfully started[39m
+[31m[VERIFIER][39m [33mError[39m	5/15/2024, 5:41:55 AM [33m[ExceptionsHandler][39m [31mScalar size does not match[39m - {
+  stack: [
+    [32m'Error: Scalar size does not match\n'[39m +
+      [32m'    at _multiExp (/usr/src/app/node_modules/ffjavascript/build/main.cjs:4978:19)\n'[39m +
+      [32m'    at WasmCurve.multiExpAffine (/usr/src/app/node_modules/ffjavascript/build/main.cjs:5015:22)\n'[39m +
+      [32m'    at Object.groth16Verify [as verify] (/usr/src/app/node_modules/snarkjs/build/main.cjs:1354:31)\n'[39m +
+      [32m'    at VerifierAPIService.verifyProof (/usr/src/app/src/verifier/verifier-api.service.ts:14:17)\n'[39m +
+      [32m'    at VerifierAPIController.verifyProof (/usr/src/app/src/verifier/verifier-api.controller.ts:32:26)\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-execution-context.js:46:28\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-proxy.js:9:17'[39m
+  ]
+}
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 5:41:55 AM [33m[HTTP][39m [32m
+	 ✦ POST /api/verifier/verify-proof 🔴 500 ::ffff:172.19.0.6 
+	 ✦ body: {"ServiceName":"kataomoi-boat","IssuerPubKey":"wakeful-cave.testnet","proof":"{\"pi_a\":[\"5859911651080975615106620726260130801495832330064459919876555430591214984634\",\"224605338350346836007526908193298290807806581977597446958440756908907573012\",\"1\"],\"pi_b\":[[\"20116528092932806657244124006123892656419396712850779808139764753006494176162\",\"3389496591053970951647165244520905209317971754556266478811186580081091751032\"],[\"10262832413177611682063109032598787333167040434527913887918114884226743777918\",\"21163980807723071986916345754701204602740485358112907228347165454162519715861\"],[\"1\",\"0\"]],\"pi_c\":[\"2010002668133569176770773869514593879856716659008056992160833661383265424685\",\"18678097828323945798147443175549151145087770387998114940520747523206033408154\",\"1\"],\"protocol\":\"groth16\",\"curve\":\"bn128\"}"} 
+	 ✦ params: {"0":"api/verifier/verify-proof"} 
+	 ✦ query: {}
+[39m
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 5:42:22 AM [33m[RoutesResolver][39m [32mVerifierAPIController {/api/verifier}:[39m
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 5:42:22 AM [33m[RouterExplorer][39m [32mMapped {/api/verifier/verify-proof, POST} route[39m
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 5:42:22 AM [33m[NestApplication][39m [32mNest application successfully started[39m
+[31m[VERIFIER][39m [33mError[39m	5/15/2024, 5:45:24 AM [33m[ExceptionsHandler][39m [31mUnexpected end of JSON input[39m - {
+  stack: [
+    [32m'SyntaxError: Unexpected end of JSON input\n'[39m +
+      [32m'    at JSON.parse (<anonymous>)\n'[39m +
+      [32m'    at VerifierAPIController.verifyProof (/usr/src/app/src/verifier/verifier-api.controller.ts:33:12)\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-execution-context.js:38:29\n'[39m +
+      [32m'    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-execution-context.js:46:28\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-proxy.js:9:17'[39m
+  ]
+}
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 5:45:24 AM [33m[HTTP][39m [32m
+	 ✦ POST /api/verifier/verify-proof 🔴 500 ::ffff:172.19.0.6 
+	 ✦ body: {"ServiceName":"kataomoi-boat","IssuerPubKey":"wakeful-cave.testnet","proof":"{\"pi_a\":[\"5859911651080975615106620726260130801495832330064459919876555430591214984634\",\"224605338350346836007526908193298290807806581977597446958440756908907573012\",\"1\"],\"pi_b\":[[\"20116528092932806657244124006123892656419396712850779808139764753006494176162\",\"3389496591053970951647165244520905209317971754556266478811186580081091751032\"],[\"10262832413177611682063109032598787333167040434527913887918114884226743777918\",\"21163980807723071986916345754701204602740485358112907228347165454162519715861\"],[\"1\",\"0\"]],\"pi_c\":[\"2010002668133569176770773869514593879856716659008056992160833661383265424685\",\"18678097828323945798147443175549151145087770387998114940520747523206033408154\",\"1\"],\"protocol\":\"groth16\",\"curve\":\"bn128\"}"} 
+	 ✦ params: {"0":"api/verifier/verify-proof"} 
+	 ✦ query: {}
+[39m
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 5:50:44 AM [33m[RoutesResolver][39m [32mVerifierAPIController {/api/verifier}:[39m
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 5:50:44 AM [33m[RouterExplorer][39m [32mMapped {/api/verifier/verify-proof, POST} route[39m
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 5:50:44 AM [33m[NestApplication][39m [32mNest application successfully started[39m
+[31m[VERIFIER][39m [33mError[39m	5/15/2024, 5:51:02 AM [33m[ExceptionsHandler][39m [31mNo number after minus sign in JSON at position 1[39m - {
+  stack: [
+    [32m'SyntaxError: No number after minus sign in JSON at position 1\n'[39m +
+      [32m'    at JSON.parse (<anonymous>)\n'[39m +
+      [32m'    at VerifierAPIController.verifyProof (/usr/src/app/src/verifier/verifier-api.controller.ts:34:12)\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-execution-context.js:38:29\n'[39m +
+      [32m'    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-execution-context.js:46:28\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-proxy.js:9:17'[39m
+  ]
+}
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 5:51:02 AM [33m[HTTP][39m [32m
+	 ✦ POST /api/verifier/verify-proof 🔴 500 ::ffff:172.19.0.6 
+	 ✦ body: {"ServiceName":"kataomoi-boat","HolderPubKey":"wakeful-cave.testnet","proof":"-"} 
+	 ✦ params: {"0":"api/verifier/verify-proof"} 
+	 ✦ query: {}
+[39m
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 5:53:51 AM [33m[RoutesResolver][39m [32mVerifierAPIController {/api/verifier}:[39m
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 5:53:51 AM [33m[RouterExplorer][39m [32mMapped {/api/verifier/verify-proof, POST} route[39m
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 5:53:51 AM [33m[NestApplication][39m [32mNest application successfully started[39m
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 6:23:45 AM [33m[RoutesResolver][39m [32mVerifierAPIController {/api/verifier}:[39m
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 6:23:45 AM [33m[RouterExplorer][39m [32mMapped {/api/verifier/verify-proof, POST} route[39m
+[32m[VERIFIER][39m [33mInfo[39m	5/15/2024, 6:23:45 AM [33m[NestApplication][39m [32mNest application successfully started[39m

@@ -79,6 +79,8 @@ export class IssuerAPIService {
     // => Proof Value: 64자리 base58
     const thisCount = await this.getCountAndIncrement();
     const message = `VC_no_${thisCount}`;
+    console.log('issuer private key: ', this.ISSUER_PRI_KEY);
+    console.log('issuer public key: ', this.ISSUER_PUB_KEY);
     return {
       proofValue: bs58.encode(
         ed25519.sign(bs58.decode(this.ISSUER_PRI_KEY), Buffer.from(message)),

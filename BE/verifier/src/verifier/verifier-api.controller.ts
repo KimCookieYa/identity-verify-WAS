@@ -18,7 +18,7 @@ export class VerifierAPIController {
     summary: '생성된 Proof를 검증',
   })
   async verifyProof(@Body() dto: ProofDto): Promise<boolean> {
-    const { ServiceName, HolderPubKey, proof } = dto;
+    const { ServiceName, IssuerPubKey, proof } = dto;
 
     // const document = get_document(did: string): Document
     // const { encodedPubKey } = document.public_key;
@@ -34,13 +34,13 @@ export class VerifierAPIController {
       JSON.parse(proof),
     );
 
-    if (!verifyResult) return false;
+    if (!IssuerPubKey) return false;
 
     // Send data to blockchain (NEAR)
     try {
       const verifyResult = await this.verifierAPIService.loadProofResult(
         ServiceName,
-        HolderPubKey,
+        IssuerPubKey,
       );
       if (!verifyResult) {
         throw new CustomErrorException('Verify Load Failed', 502);

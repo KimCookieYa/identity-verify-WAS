@@ -1,0 +1,44 @@
+[31m[VERIFIER][39m [33mError[39m	6/4/2024, 3:54:30 PM [33m[ExceptionsHandler][39m [31mUnexpected end of JSON input[39m - {
+  stack: [
+    [32m'SyntaxError: Unexpected end of JSON input\n'[39m +
+      [32m'    at JSON.parse (<anonymous>)\n'[39m +
+      [32m'    at VerifierAPIController.verifyProof (/usr/src/app/src/verifier/verifier-api.controller.ts:33:12)\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-execution-context.js:38:29\n'[39m +
+      [32m'    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-execution-context.js:46:28\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-proxy.js:9:17'[39m
+  ]
+}
+[31m[VERIFIER][39m [33mError[39m	6/4/2024, 3:58:22 PM [33m[ExceptionsHandler][39m [31mUnexpected end of JSON input[39m - {
+  stack: [
+    [32m'SyntaxError: Unexpected end of JSON input\n'[39m +
+      [32m'    at JSON.parse (<anonymous>)\n'[39m +
+      [32m'    at VerifierAPIController.verifyProof (/usr/src/app/src/verifier/verifier-api.controller.ts:33:12)\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-execution-context.js:38:29\n'[39m +
+      [32m'    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-execution-context.js:46:28\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-proxy.js:9:17'[39m
+  ]
+}
+[31m[VERIFIER][39m [33mError[39m	6/4/2024, 4:04:18 PM [33m[ExceptionsHandler][39m [31mUnexpected end of JSON input[39m - {
+  stack: [
+    [32m'SyntaxError: Unexpected end of JSON input\n'[39m +
+      [32m'    at JSON.parse (<anonymous>)\n'[39m +
+      [32m'    at VerifierAPIController.verifyProof (/usr/src/app/src/verifier/verifier-api.controller.ts:33:12)\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-execution-context.js:38:29\n'[39m +
+      [32m'    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-execution-context.js:46:28\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-proxy.js:9:17'[39m
+  ]
+}
+[31m[VERIFIER][39m [33mError[39m	6/4/2024, 4:09:17 PM [33m[ExceptionsHandler][39m [31mUnexpected end of JSON input[39m - {
+  stack: [
+    [32m'SyntaxError: Unexpected end of JSON input\n'[39m +
+      [32m'    at JSON.parse (<anonymous>)\n'[39m +
+      [32m'    at VerifierAPIController.verifyProof (/usr/src/app/src/verifier/verifier-api.controller.ts:33:12)\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-execution-context.js:38:29\n'[39m +
+      [32m'    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-execution-context.js:46:28\n'[39m +
+      [32m'    at /usr/src/app/node_modules/@nestjs/core/router/router-proxy.js:9:17'[39m
+  ]
+}
