@@ -22,7 +22,10 @@ export default function NotificationPage() {
             const res = await getAlarmList();
             if (res.data.result <= 300) {
                 console.log(res.data.data);
-                setAlarmList(res.data.data.alarmList.reverse() as IAlarm[]);
+                const _alarmList =
+                    res.data.data.alarmList.reverse() as IAlarm[];
+
+                setAlarmList(_alarmList);
             }
         };
         fetchAlarmList();

@@ -2,7 +2,7 @@ import { useModalStore } from '@/stores/useModalStore';
 import { useRouter } from 'next/navigation';
 import useUserInfoStore from '@/stores/useUserInfoStore';
 import Link from 'next/link';
-import { postSendWrongPerson } from '@/api/Matching';
+import { postSendIsItMe, postSendWrongPerson } from '@/api/Matching';
 import { useToast } from '@/stores/useToastStore';
 
 export function CheckLabelModal({
@@ -17,8 +17,17 @@ export function CheckLabelModal({
     const router = useRouter();
     const userInfo = useUserInfoStore((state) => state.userInfo);
 
-    const onCreateBoat = () => {
-        router.push('/pond/boat');
+    const onSendIsItMe = async () => {
+        const res = await postSendIsItMe({ targetPk });
+        console.log(res);
+        if (res.data.result <= 300) {
+            toast.openToast(
+                '혹시 진짜 나야?를 보냈습니다. 기다리죠!',
+                'success',
+                () => {}
+            );
+        }
+
         modalState.closeModal();
     };
 
@@ -60,8 +69,8 @@ export function CheckLabelModal({
                     className={
                         'bg-primary text-white rounded-10 px-8 py-4 w-full'
                     }
-                    onClick={onCreateBoat}
-                    disabled={userInfo?.heart! < 20}
+                    onClick={onSendIsItMe}
+                    // disabled={userInfo?.heart < 20}
                 >
                     혹시 진짜 나야?
                 </button>

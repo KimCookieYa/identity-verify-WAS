@@ -3,10 +3,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import serverAxios, { apiHandler } from '@/lib/server-axios';
 
 export const POST = apiHandler(async (req: NextRequest) => {
-    const { serviceName, proof, holderPubKey } = await req.json();
+    const { serviceName, proof, issuerPubKey } = await req.json();
     const res = await serverAxios.post(`/service/verify-proof`, {
-        serviceName: serviceName,
-        holderPubKey: holderPubKey,
+        ServiceName: serviceName,
+        IssuerPubKey: issuerPubKey,
         proof,
     });
 

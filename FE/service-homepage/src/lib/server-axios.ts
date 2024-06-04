@@ -43,10 +43,10 @@ export function apiHandler(
         try {
             return await fn(req, res);
         } catch (error: any) {
-            logger.error(
-                { err: error, responseData: error.message },
-                error.message
-            );
+            // logger.error(
+            //     { err: error, responseData: error.message },
+            //     error.message
+            // );
             console.log('Error Response');
             console.log(error.message);
             console.log(error.code);

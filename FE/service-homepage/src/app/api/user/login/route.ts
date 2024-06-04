@@ -11,6 +11,7 @@ export const POST = apiHandler(async (req: NextRequest) => {
     });
 
     // 세션에 토큰 저장
+    console.log(res);
     const session = await getSession();
     session.id = id;
     session.token = res.data.data.token;

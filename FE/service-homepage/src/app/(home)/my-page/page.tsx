@@ -1,72 +1,22 @@
 'use client';
 
-import useWalletStore from '@/stores/useWalletStore';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FaHeart } from 'react-icons/fa';
 import useUserInfoStore from '@/stores/useUserInfoStore';
 import { useRouter } from 'next/navigation';
 import { postLogout, postVerifyProof } from '@/api/User';
 import { useToast } from '@/stores/useToastStore';
+import Link from 'next/link';
 
 export default function MyPagePage() {
     const router = useRouter();
-    const { isInstalled, setInstalled } = useWalletStore();
     const toastStore = useToast();
     const { userInfo, logout } = useUserInfoStore((state) => state);
     const [proof, setProof] = useState<Object>({});
     const [holderPubKey, setHolderPubKey] = useState<string>('');
-    const [issuerPubKey, setIssuerPubKey] = useState<string>('');
-    const [publicSignals, setPublicSignals] = useState<Object>({});
-
-    useEffect(() => {
-        setTimeout(() => {
-            const element = document.getElementById(
-                process.env.NEXT_PUBLIC_WALLET_EXTENSION_ID as string
-            );
-            if (element) {
-                setInstalled(true);
-            }
-        }, 1000);
-    }, []);
-
-    useEffect(() => {
-        if (isInstalled) {
-            console.log('wallet is installed');
-        } else {
-            console.log("wallet isn't installed");
-        }
-    }, [isInstalled]);
-
-    const onConnectWallet = () => {
-        alert('지갑 연결!');
-        sendMessageToExtension();
-    };
-
-    const onInstallWallet = () => {
-        alert('크롬 웹스토어로 이동합니다!');
-    };
-
-    useEffect(() => {
-        // 확장 앱으로부터 메시지를 받기 위한 이벤트 리스너
-        window.addEventListener('message', (event) => {
-            if (event.origin !== window.location.origin) return;
-
-            if (event.data.type === 'FROM_EXTENSION_TO_PAGE') {
-                console.log('Message from the extension:', event.data.message);
-                const data = JSON.parse(event.data.message);
-                setProof(data.proof);
-                setHolderPubKey(data.holderPubKey);
-            }
-        });
-    }, []);
-
-    // 버튼 클릭시 메시지 보내기
-    const sendMessageToExtension = () => {
-        window.postMessage(
-            { type: 'FROM_PAGE', text: 'Hello, extension!' },
-            '*'
-        );
-    };
+    const [issuerPubKey, setIssuerPubKey] = useState<string>(
+        'wakeful-cave.testnet'
+    );
 
     const onLogout = async () => {
         logout();
@@ -74,21 +24,6 @@ export default function MyPagePage() {
         toastStore.openToast('로그아웃 되었습니다.', 'success', () => {
             router.push('/');
         });
-    };
-
-    const onVerifyProof = async () => {
-        const res = await postVerifyProof(
-            process.env.NEXT_PUBLIC_SERVICE_NAME as string,
-            JSON.stringify(proof),
-            holderPubKey
-        );
-        if (res.data.result <= 300) {
-            console.log(res.data.data);
-            toastStore.openToast('2차 인증 완료!', 'success', () => {});
-        } else {
-            console.log(res.data);
-            toastStore.openToast(res.data?.message, 'error', () => {});
-        }
     };
 
     return (
@@ -106,8 +41,8 @@ export default function MyPagePage() {
                         userInfo?.isVerifiedUser ? '2차 인증 완료' : '미인증'
                     }
                 />
-                <div>proof: {JSON.stringify(proof)}</div>
-                <div>holderPubKey: {holderPubKey}</div>
+
+                {/*<div>publicSignals: {JSON.stringify(publicSignals)}</div>*/}
                 {/*    {isInstalled ? (*/}
                 {/*    <button*/}
                 {/*        className={*/}
@@ -126,47 +61,43 @@ export default function MyPagePage() {
                 {/*    </button>*/}
                 {/*)}*/}
             </section>
-            <section
-                id={'2nd-auth-banner'}
-                className="hidden flex flex-col gap-y-12 mt-80 w-full text-indigo-500 border-2 border-indigo-500 rounded-8 p-12"
+            {!userInfo?.isVerifiedUser && (
+                <section
+                    id={'2nd-auth-banner'}
+                    className=" flex flex-col gap-y-12 mt-56 w-full border-2 bg-indigo-500 rounded-8 p-12 text-white"
+                >
+                    <h2 className="text-24">2차 인증</h2>
+                    <div className="flex w-full gap-x-8">
+                        <p>
+                            짝사랑 종이배 만의 블록체인과 암호학 기반의 인증
+                            로직으로 2차 인증을 수행해보세요!
+                        </p>
+                    </div>
+                    <div className={'flex w-full gap-x-8'}>
+                        <p
+                            className={
+                                'font-bold text-red-300 flex items-center gap-x-4'
+                            }
+                        >
+                            +10 <FaHeart />
+                        </p>
+                        <Link
+                            href={'/my-page/verify-proof'}
+                            className={
+                                'p-2 underline text-white font-bold ml-auto'
+                            }
+                        >
+                            2차 인증 하러가기
+                        </Link>
+                    </div>
+                </section>
+            )}
+            <button
+                className={'px-8 py-4 bg-gray-200 rounded-8 mt-48 ml-auto'}
+                onClick={onLogout}
             >
-                <h2 className="text-24">2차 인증</h2>
-                <div className="flex w-full gap-x-8">
-                    <p>
-                        짝사랑 종이배 만의 블록체인과 암호학 기반의 인증
-                        로직으로 2차 인증을 수행해보세요!
-                    </p>
-                </div>
-                <div className={'flex w-full gap-x-8'}>
-                    <p
-                        className={
-                            'font-bold text-red-600 flex items-center gap-x-4'
-                        }
-                    >
-                        +10 <FaHeart />
-                    </p>
-                    <button
-                        className={'p-2 underline text-blue-500 ml-auto'}
-                        onClick={onConnectWallet}
-                    >
-                        2차 인증 하러가기
-                    </button>
-                </div>
-            </section>
-            <div className="flex gap-x-4 mt-24">
-                <button
-                    className={'p-2 bg-gray-200 rounded-2xl'}
-                    onClick={onLogout}
-                >
-                    로그아웃
-                </button>
-                <button
-                    className={'p-2 bg-gray-200 rounded-2xl'}
-                    onClick={onVerifyProof}
-                >
-                    2차 인증하기
-                </button>
-            </div>
+                로그아웃
+            </button>
         </main>
     );
 }

@@ -2,7 +2,8 @@
 
 import { forwardRef, RefObject, useRef } from 'react';
 import { postSendRealName } from '@/api/Matching';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useToast } from '@/stores/useToastStore';
 
 const CHOSUNG_LIST = [
     'ㄱ',
@@ -27,7 +28,9 @@ const CHOSUNG_LIST = [
 ];
 
 export default function SendQuizPage() {
+    const { openToast } = useToast();
     const targetPk = useSearchParams().get('targetPk');
+    const router = useRouter();
     console.log(targetPk);
     const inputRef1 = useRef<HTMLInputElement>(null);
     const inputRef2 = useRef<HTMLInputElement>(null);
@@ -64,10 +67,12 @@ export default function SendQuizPage() {
                 name: chosung1 + chosung2 + chosung3,
             });
             console.log(res);
-            if (res.data.status <= 200) {
-                console.log('이름 전송 성공');
+            if (res.data.result <= 200) {
+                openToast('이름을 전송했습니다', 'success', () => {
+                    router.push('/notification');
+                });
             } else {
-                console.log('이름 전송 실패');
+                openToast('이름 전송에 실패했습니다', 'error', () => {});
             }
         } else {
             console.log('모든 칸을 채워주세요');

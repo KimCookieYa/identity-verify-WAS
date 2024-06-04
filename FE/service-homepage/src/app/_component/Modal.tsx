@@ -2,10 +2,14 @@
 
 import Portal from './Portal';
 import { useModalStore } from '@/stores/useModalStore';
-import { EventHandler } from 'react';
+import { EventHandler, useEffect } from 'react';
 
 export default function Modal() {
     const modalState = useModalStore();
+
+    useEffect(() => {
+        console.log(modalState);
+    }, [modalState.isModalOpen]);
 
     if (!modalState || !modalState.isModalOpen) {
         return null;
