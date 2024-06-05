@@ -165,10 +165,16 @@ export class ServiceAPIService {
     //     .post(this.VERIFY_PROOF, { ...dto })
     //     .pipe(map((response) => response.data)),
     // );
-    return true;
     // if (!result) return false;
-    // const { userPk } = dto;
-    // await this.checkToVerifiedUser(userPk);
+    const { userPk } = dto;
+    await this.checkToVerifiedUser(userPk);
     return true;
+  }
+
+  async checkToVerifiedUser(userPk: string) {
+    return await this.userRepository.update(
+      { pk: userPk },
+      { isVerifiedUser: true },
+    );
   }
 }
